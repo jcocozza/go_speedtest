@@ -33,10 +33,12 @@ func getLocation() (float64, float64) {
 
 	coordsStrLst := strings.Split(ipInfo.Loc, ",")
 	latitude, err := strconv.ParseFloat(coordsStrLst[0], 64)
-	longitude, err := strconv.ParseFloat(coordsStrLst[1], 64)
-
 	if err != nil {
-		slog.Error("Error parsing coordinates:", fmt.Sprint(err))
+		slog.Error("Error parsing latitude: " + fmt.Sprint(err))
+	}
+	longitude, err := strconv.ParseFloat(coordsStrLst[1], 64)
+	if err != nil {
+		slog.Error("Error parsing longitude: " + fmt.Sprint(err))
 	}
 
 	return latitude, longitude
