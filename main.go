@@ -4,7 +4,8 @@ import (
 	//"github.com/jcocozza/go_speedtest/database"
 	"fmt"
 
-	"github.com/jcocozza/go_speedtest/speedtest"
+	//"github.com/jcocozza/go_speedtest/speedtest"
+	"github.com/jcocozza/go_speedtest/weather"
 )
 
 const dbFileName = "go-speedtest.db"
@@ -17,6 +18,15 @@ func main() {
 	}
 	*/
 
-	result := speedtest.SpeedTestJSON()
-	fmt.Println(result)
+	//result := speedtest.SpeedTestJSON()
+	//fmt.Println(result)
+	result := weather.GetWeather()
+	//fmt.Println(result)
+
+	wstd := weather.WeatherSpeedTestData{
+		SpeedTestId: 1,
+		CurrentWeatherResponse: result,
+	}
+
+	fmt.Println(weather.LoadTemplate(wstd))
 }

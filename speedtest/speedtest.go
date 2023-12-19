@@ -80,7 +80,7 @@ func SpeedTestJSON() SpeedTestResult {
 	var speedtestResult SpeedTestResult
 	err = json.Unmarshal(output, &speedtestResult)
     if err != nil {
-        fmt.Println("Error unmarshaling JSON:", err)
+        slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
         panic(err)
     }
 

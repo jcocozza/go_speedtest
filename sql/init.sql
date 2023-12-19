@@ -42,8 +42,60 @@ CREATE TABLE IF NOT EXISTS speedtest_results (
 -- creates a database table for storing data associated with the weather during a given speedtest
 CREATE TABLE IF NOT EXISTS weather (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    speedtest_id INT
-    FOREIGN KEY (speedtest_id) REFERENCES speedtest_results(id)
+    SpeedTest_id INT
+    FOREIGN KEY (SpeedTest_id) REFERENCES speedtest_results(id)
 
-    -- include weather info; need to investigate API for this
+     -- Location Fields
+    LocationName TEXT,
+    Region TEXT,
+    Country TEXT,
+    Lat FLOAT,
+    Lon FLOAT,
+    TzID TEXT,
+    LocaltimeEpoch INTEGER,
+    Localtime DATETIME,
+
+    -- Current Fields
+    LastUpdatedEpoch INT,
+    LastUpdated DATETIME,
+    TempC FLOAT,
+    TempF FLOAT,
+    IsDay BOOLEAN,
+
+    -- Condition Fields
+    ConditionText TEXT,
+    ConditionIcon TEXT,
+    ConditionCode INTEGER,
+
+    -- Current
+    -- Wind Fields
+    WindMph FLOAT,
+    WindKph FLOAT,
+    WindDegree INT,
+    WindDir TEXT,
+    -- Pressure Fields
+    PressureMb FLOAT,
+    PressureIn FLOAT,
+    -- Precipitation Fields
+    PrecipMm FLOAT,
+    PrecipIn FLOAT,
+    -- Additional Weather Fields
+    Humidity INTEGER,
+    Cloud INTEGER,
+    FeelslikeC FLOAT,
+    FeelslikeF FLOAT,
+    VisKm FLOAT,
+    VisMiles FLOAT,
+    Uv FLOAT,
+    GustMph FLOAT,
+    GustKph FLOAT,
+    -- Air Quality Fields
+    Co FLOAT,
+    No2 FLOAT,
+    O3 FLOAT,
+    So2 FLOAT,
+    Pm25 FLOAT,
+    Pm10 FLOAT,
+    UsEpaIndex INTEGER,
+    GbDefraIndex INTEGER NOT NULL
 );
