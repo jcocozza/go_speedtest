@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -41,4 +42,14 @@ func Connect(databaseFileName string) (*sql.DB, error) {
     }
     slog.Info("Connected to SQLite Database")
     return db, nil
+}
+
+func RunSQL(sql string, db *sql.DB) {
+    // Execute the SQL statements in the file
+    slog.Debug("Running sql: " + sql)
+    _, err := db.Exec(sql)
+    if err != nil {
+        slog.Error(fmt.Sprint(err))
+    }
+    slog.Debug("Sql completed")
 }

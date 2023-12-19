@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS speedtest_results (
     result_url VARCHAR(255),
     result_persisted BOOLEAN
 );
-
 -- creates a database table for storing data associated with the weather during a given speedtest
 CREATE TABLE IF NOT EXISTS weather (
     id INT PRIMARY KEY AUTO_INCREMENT,
