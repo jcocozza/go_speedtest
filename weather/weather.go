@@ -47,7 +47,7 @@ func getLocation() (float64, float64) {
 // generate the api string for current weather data
 func genCurrentUrl(key string, latitude, longitude float64) string {
 	currentUrl := BASEURL + "/" + "current.json?key=" + key + "&q=" + fmt.Sprint(latitude) + "," + fmt.Sprint(longitude) + "&aqi=yes"
-	slog.Info("Weather URL: " + currentUrl)
+	slog.Debug("Weather URL: " + currentUrl)
 	return currentUrl
 }
 
@@ -59,7 +59,7 @@ func GetWeather() CurrentWeatherResponse {
 
 	// handle lat/long coords
 	if len(os.Args) > 1 {
-		latitudeStr, longitudeStr := os.Args[0], os.Args[1]
+		latitudeStr, longitudeStr := os.Args[1], os.Args[2]
 
 		latitude, err = strconv.ParseFloat(latitudeStr, 64)
 		if err != nil {
@@ -88,7 +88,7 @@ func GetWeather() CurrentWeatherResponse {
 			panic(err)
 		}
 		data = responseBody
-		slog.Info("weather response:\n" + string(data))
+		slog.Debug("weather response:\n" + string(data))
 	}
 
 	var currentWeatherResponse CurrentWeatherResponse

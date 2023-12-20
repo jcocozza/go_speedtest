@@ -10,6 +10,17 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// connect to the application's database
+func ConnectToDatabase() *sql.DB {
+    db, err := connect(dbFileName)
+
+    if err != nil {
+        panic(err)
+    }
+    return db
+}
+
+// get the file path for the sqlite database
 func getDataBaseFilePath(databaseFileName string) (string, error) {
 	exePath, err := os.Executable()
 	if err != nil {
@@ -18,11 +29,12 @@ func getDataBaseFilePath(databaseFileName string) (string, error) {
 
 	dbPath := filepath.Join(filepath.Dir(exePath), databaseFileName)
 
-    slog.Info("Database found at: " + dbPath)
+    slog.Debug("Database Path: " + dbPath)
 	return dbPath, nil
 }
 
-func Connect(databaseFileName string) (*sql.DB, error) {
+// connect to the sqlite database
+func connect(databaseFileName string) (*sql.DB, error) {
     dbPath, err := getDataBaseFilePath(databaseFileName)
     if err != nil {
         return nil, err
@@ -40,13 +52,14 @@ func Connect(databaseFileName string) (*sql.DB, error) {
         slog.Error("Failed to connect to database - ping failed")
         return nil, err
     }
-    slog.Info("Connected to SQLite Database")
+    slog.Debug("Connected to SQLite Database")
     return db, nil
 }
 
+// run a sql string
 func RunSQL(sql string, db *sql.DB) {
     // Execute the SQL statements in the file
-    slog.Debug("Running sql: " + sql)
+    slog.Debug("Running sql: \n" + sql)
     _, err := db.Exec(sql)
     if err != nil {
         slog.Error(fmt.Sprint(err))

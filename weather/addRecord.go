@@ -17,7 +17,6 @@ type WeatherSpeedTestData struct {
 
 
 func LoadTemplate(weatherSpeedTestData WeatherSpeedTestData) string {
-	// Prepare the SQL template
 	var err error
 	tmp1 := template.New("insert_template")
 	tmp1, err = tmp1.Parse(sql.InsertWeatherTemplate)

@@ -55,11 +55,11 @@ type Result struct {
 
 type SpeedTestResult struct {
 	Type       string     `json:"type"`
-	Timestamp  time.Time  `json:"timestamp"`
+	TimeStamp  time.Time  `json:"timestamp"`
 	Ping       Ping 	  `json:"ping"`
 	Download   PacketInfo `json:"download"`
 	Upload 	   PacketInfo `json:"upload"`
-	PacketLoss int        `json:"packetLoss"`
+	PacketLoss float64    `json:"packetLoss"`
 	Isp        string     `json:"isp"`
 	Interface  Interface  `json:"interface"`
 	Server     Server     `json:"server"`
@@ -67,7 +67,7 @@ type SpeedTestResult struct {
 }
 
 func SpeedTestJSON() SpeedTestResult {
-	slog.Info("Running speedtest...")
+	slog.Debug("Running speedtest...")
 	cmd := exec.Command("speedtest", "-f", "json")
 
 	output, err := cmd.CombinedOutput()
@@ -84,6 +84,6 @@ func SpeedTestJSON() SpeedTestResult {
         panic(err)
     }
 
-	slog.Info("Speedtest output: " + string(output))
+	slog.Debug("Speedtest output: " + string(output))
 	return speedtestResult
 }
