@@ -1,2 +1,5 @@
 weather/apikey.go
 .vscode
+go_compile.sh
+go_speedtest_Linux_aarch64
+go_speedtest_Linux_amd64

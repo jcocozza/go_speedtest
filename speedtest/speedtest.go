@@ -56,14 +56,14 @@ type Result struct {
 type SpeedTestResult struct {
 	Type       string     `json:"type"`
 	TimeStamp  time.Time  `json:"timestamp"`
-	Ping       Ping 	  `json:"ping"`
+	Ping       Ping       `json:"ping"`
 	Download   PacketInfo `json:"download"`
-	Upload 	   PacketInfo `json:"upload"`
+	Upload     PacketInfo `json:"upload"`
 	PacketLoss float64    `json:"packetLoss"`
 	Isp        string     `json:"isp"`
 	Interface  Interface  `json:"interface"`
 	Server     Server     `json:"server"`
-	Result 	   Result     `json:"result"`
+	Result     Result     `json:"result"`
 }
 
 func SpeedTestJSON() SpeedTestResult {
@@ -79,10 +79,10 @@ func SpeedTestJSON() SpeedTestResult {
 
 	var speedtestResult SpeedTestResult
 	err = json.Unmarshal(output, &speedtestResult)
-    if err != nil {
-        slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
-        panic(err)
-    }
+	if err != nil {
+		slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
+		panic(err)
+	}
 
 	slog.Debug("Speedtest output: " + string(output))
 	return speedtestResult
