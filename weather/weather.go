@@ -26,10 +26,10 @@ func getLocation() (float64, float64) {
 	}
 	var ipInfo IPInfoResponse
 	err = json.Unmarshal(output, &ipInfo)
-    if err != nil {
-        slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
-        panic(err)
-    }
+	if err != nil {
+		slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
+		panic(err)
+	}
 
 	coordsStrLst := strings.Split(ipInfo.Loc, ",")
 	latitude, err := strconv.ParseFloat(coordsStrLst[0], 64)
@@ -93,10 +93,10 @@ func GetWeather() CurrentWeatherResponse {
 
 	var currentWeatherResponse CurrentWeatherResponse
 	err = json.Unmarshal(data, &currentWeatherResponse)
-    if err != nil {
-        slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
-        panic(err)
-    }
+	if err != nil {
+		slog.Error("Error unmarshaling JSON: " + fmt.Sprint(err))
+		panic(err)
+	}
 	return currentWeatherResponse
 
 }

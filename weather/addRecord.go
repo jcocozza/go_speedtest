@@ -9,12 +9,10 @@ import (
 	"github.com/jcocozza/go_speedtest/sql"
 )
 
-
 type WeatherSpeedTestData struct {
-	SpeedTestId 		   int 					  `json:"speedtest_id"`
+	SpeedTestId            int                    `json:"speedtest_id"`
 	CurrentWeatherResponse CurrentWeatherResponse `json:"current_weather"`
 }
-
 
 func LoadTemplate(weatherSpeedTestData WeatherSpeedTestData) string {
 	var err error

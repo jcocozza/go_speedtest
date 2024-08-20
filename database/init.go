@@ -12,10 +12,10 @@ const dbFileName = ".go-speedtest.db"
 
 func init() {
 	dbPath, err := getDataBaseFilePath(dbFileName)
-    if err != nil {
+	if err != nil {
 		slog.Error("Failed to get database file path")
-        return
-    }
+		return
+	}
 
 	if _, err := os.Stat(dbPath); os.IsNotExist(err) {
 		slog.Debug("File " + dbFileName + " does not exist.")
